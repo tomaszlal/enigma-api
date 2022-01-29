@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SwitchBoard extends SimpleSwitch {
+    public SwitchBoard() {
+    }
 
     public SwitchBoard(String switchSetting) {
         super(switchSetting);
