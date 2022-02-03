@@ -10,10 +10,12 @@ import java.util.Arrays;
 public abstract class SimpleSwitch {
     private int[] tableWire = new int[26];
 
+
     public SimpleSwitch() {
     }
 
     public SimpleSwitch(String switchSetting) {
+
         for (int i=0; i<26; i++) tableWire[i]=i;
         String[] switchSettingsTable = switchSetting.split(" ");
         for (String element:switchSettingsTable) {
@@ -40,4 +42,6 @@ public abstract class SimpleSwitch {
         }
         return temp;
     }
+
+
 }

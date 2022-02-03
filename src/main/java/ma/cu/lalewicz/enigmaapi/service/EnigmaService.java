@@ -12,31 +12,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class EnigmaService {
 
-    @Autowired
     private RotorBlock rotorBlock;
-
 
     private EnigmaSettings enigmaSet;
 
-
-
     public EnigmaService(EnigmaConst enigmaConst) {
         SwitchBoard switchBoard = new SwitchBoard("(FR) (YE) (US) (QO) (FS) (GL) (KB)");
-        Rotor rotorR = new Rotor(enigmaConst.getRotorSettings("I").getEncryptionWiring(),0,enigmaConst.getRotorSettings("I").getIndentPosition());
-        Rotor rotorM = new Rotor(enigmaConst.getRotorSettings("II").getEncryptionWiring(),0,enigmaConst.getRotorSettings("II").getIndentPosition());
-        Rotor rotorL = new Rotor(enigmaConst.getRotorSettings("III").getEncryptionWiring(),0,enigmaConst.getRotorSettings("III").getIndentPosition());
-        ReflectorReversing invertReflector = new ReflectorReversing("(AY) (BR) (CU) (DH) (EQ) (FS) (GL) (IP) (JX) (KN) (MO) (TZ) (VW)");
+        Rotor rotorR = new Rotor(enigmaConst.getRotorSettings("I").getEncryptionWiring(),0,enigmaConst.getRotorSettings("I").getIndentPosition(),enigmaConst.getRotorSettings("I").getNameRotor());
+        Rotor rotorM = new Rotor(enigmaConst.getRotorSettings("II").getEncryptionWiring(),0,enigmaConst.getRotorSettings("II").getIndentPosition(),enigmaConst.getRotorSettings("II").getNameRotor());
+        Rotor rotorL = new Rotor(enigmaConst.getRotorSettings("III").getEncryptionWiring(),0,enigmaConst.getRotorSettings("III").getIndentPosition(),enigmaConst.getRotorSettings("III").getNameRotor());
+        ReflectorReversing invertReflector = new ReflectorReversing(enigmaConst.getReflectorSettings("B").getEncryptionWiring(),"B");
         rotorBlock =  new RotorBlock(switchBoard,rotorR,rotorM,rotorL,invertReflector);
-        System.out.println(rotorBlock.getRotorLeft());
         enigmaSet = new EnigmaSettings(rotorBlock);
-        System.out.println(enigmaSet.getSwitchBoard());
+
 
     }
 
+    //pobranie aktualnych ustawien bebnkow
     public EnigmaSettings getEnigmaSet(){
-        System.out.println(enigmaSet.getSwitchBoard());
+        enigmaSet.setEncryptedSign(null);
         return enigmaSet;
     }
 
+    //szyfrowanie
+    public EnigmaSettings encrypt(char sign){
+        char c = rotorBlock.encodeChar(sign);
+        enigmaSet.setEncryptedSign(c);
+        enigmaSet.updatePositionRotors(rotorBlock);
+        return enigmaSet;
+
+    }
 
 }

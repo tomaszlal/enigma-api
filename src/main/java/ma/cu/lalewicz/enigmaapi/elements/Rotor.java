@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class Rotor {
     private int positionRotor;      //przesunięcie rotora w stosunku do oryginalnych pozycji liter
     private int indentationPosition;   //pozycja wcięcia rotora przestawiającego nastepny wirnik
+    private String rotorName; // nazwa, numer bebenka np "II"
     private boolean indent = false;
 
     private int[] tableInputWire = new int[26];  //tabela przedstawiająca połączenia i dokonujca kodowania w przód
@@ -14,10 +15,11 @@ public class Rotor {
     public Rotor() {
     }
 
-    public Rotor(String tableStr, int startPosRotor, int indentPos){
+    public Rotor(String tableStr, int startPosRotor, int indentPos, String rotorName){
         char[] table = tableStr.toCharArray();
         this.positionRotor = startPosRotor;
         this.indentationPosition = indentPos;
+        this.rotorName = rotorName;
         for (int i = 0; i < 26; i++){
             this.tableInputWire[i] = (table[i])-65;
             this.tableOutputWire[(table[i])-65] = i;
@@ -32,6 +34,11 @@ public class Rotor {
     //geter do pobrania aktualnej pozycji rotora
     public int getPositionRotor() {
         return positionRotor;
+    }
+
+    //geter pobranie nazwy bebenka
+    public String getRotorName() {
+        return rotorName;
     }
 
     // kodowanie litery do przodu - czyli pierwsze użycie wirnika
