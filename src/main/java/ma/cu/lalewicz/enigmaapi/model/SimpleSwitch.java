@@ -38,8 +38,10 @@ public abstract class SimpleSwitch {
         for (int i=0; i<26; i++) {
             if (tableWire[i]!=i){
                 temp=temp+"("+ Util.toChar(i)+Util.toChar(tableWire[i])+") ";
+
             }
         }
+        temp = temp.substring(0,temp.length()-1);
         return temp;
     }
 

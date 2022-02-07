@@ -47,6 +47,16 @@ public class EnigmaSettings {
 
     }
 
+    public void updateRotorsName(RotorBlock rotorBlock){
+        this.rotorRightName = rotorBlock.getRotorRight().getRotorName();
+        this.rotorMiddleName = rotorBlock.getRotorMiddle().getRotorName();
+        this.rotorLeftName = rotorBlock.getRotorLeft().getRotorName();
+    }
+
+    public void updateSwitchBord(RotorBlock rotorBlock){
+        this.switchBoard = rotorBlock.getSwitchBoard().toString();
+    }
+
     public String getSwitchBoard() {
         return switchBoard;
     }
