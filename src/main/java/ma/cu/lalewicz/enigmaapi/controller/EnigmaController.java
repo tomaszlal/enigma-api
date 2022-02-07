@@ -38,4 +38,9 @@ public class EnigmaController {
     private EnigmaSettings setSwitchBoardWirings(@RequestParam String wirings){
         return enigmaService.setSwitchBoard(wirings);
     }
+
+    @GetMapping("/reflector/{nameReflector}")
+    private EnigmaSettings setReflectorReversing(@PathVariable String nameReflector){
+        return enigmaService.setReflector(nameReflector);
+    }
 }

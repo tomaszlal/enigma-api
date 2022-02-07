@@ -14,7 +14,7 @@ public class ReflectorReversingTemplate {
         return encryptionWiring;
     }
 
-    public String getNameRotor() {
+    public String getNameReflector() {
         return nameRotor;
     }
 }

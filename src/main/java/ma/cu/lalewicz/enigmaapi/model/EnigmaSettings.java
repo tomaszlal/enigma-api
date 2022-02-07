@@ -57,6 +57,11 @@ public class EnigmaSettings {
         this.switchBoard = rotorBlock.getSwitchBoard().toString();
     }
 
+    public void updateReflectorReversing(RotorBlock rotorBlock){
+        this.reflectorReversingName = rotorBlock.getReflectorRev().getName();
+        this.reflectorReversing = rotorBlock.getReflectorRev().toString();
+    }
+
     public String getSwitchBoard() {
         return switchBoard;
     }

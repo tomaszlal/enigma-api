@@ -128,12 +128,29 @@ public class EnigmaService {
     //ustawienie przelacznicy wtyczkowej - switch board
     //string w postaci "(AS) (DE) (JR)"
     //endpoint
-    // /switchboard?wiring=(SD) (FG) (YT)
+    //   /switchboard?wiring=(SD) (FG) (YT)
     public EnigmaSettings setSwitchBoard(String wirings){
         //sprawdzenie poprawnosci wirings ?????????? czy po stronie frontendu
         rotorBlock.setSwitchBoard(new SwitchBoard(wirings));
         enigmaSet.updateSwitchBord(rotorBlock);
         enigmaSet.setEncryptedSign(null);
+        return enigmaSet;
+    }
+
+    //ustawienie bebenka odwracajacego reflctorReversing
+    // dane pobierane z klasy EnigmaConst
+    // endpoint
+    // /reflector/B
+    public EnigmaSettings setReflector(String nameReflector){
+        if (EnigmaConst.isKeyInReflectors(nameReflector)){
+            rotorBlock.setReflectorRev(
+                    new ReflectorReversing(EnigmaConst.getReflectorSettings(nameReflector).getEncryptionWiring(),
+                            EnigmaConst.getReflectorSettings(nameReflector).getNameReflector()));
+            enigmaSet.updateReflectorReversing(rotorBlock);
+            enigmaSet.setEncryptedSign(null);
+        } else {
+            enigmaSet.setEncryptedSign('#'); // błąd
+        }
         return enigmaSet;
     }
 }

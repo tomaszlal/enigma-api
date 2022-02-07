@@ -46,4 +46,9 @@ public class EnigmaConst {
         return rotors.containsKey(key);
     }
 
+    //sprawdza czy s=zawiera sie w kluczu reflektors
+    public static boolean isKeyInReflectors(String key) {
+        return reflectors.containsKey(key);
+    }
+
 }
